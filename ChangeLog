@@ -1,0 +1,116 @@
+udpmon HISTORY
+      Version 1.5.1
+        rich  07 Jun 20
+			Allow for NIC stats counters not being implemented in the NIC udpmon_bw_mon udpmon_resp and  udpmon_recv
+			
+      Version 1.5.0
+        rich  01 Jun 20
+			Add collection of NIC level statistics to  udpmon_bw_mon udpmon_resp and  udpmon_recv
+			Add -I to provide the interface name for the NIC stats
+			Correct call to send_cmd() for testend in udpmon_req.c
+                        Update num_lost_innet to include rx_out_of_buffer udpmon_bw_mon and udpmon_recv
+	                Update automake:
+				rename configure.in configure.ac
+				in Makefile.am replace 'INCLUDES' with 'AM_CPPFLAGS' but this failed to find arch.h
+
+      Version 1.4.4
+        rich  01 Mar 16
+	                Small corrections to output
+
+      Version 1.4.3pthread
+        rich  01 Mar 16
+	                Add possibility of a stats tread to run on a different core to udpmon_recv via -a0x<main core>:<stats core>
+
+      Version 1.4.3
+        rich  13 Jan 16
+	                Add capability to specify source (local) udp port -U to udpmon_send & udpmon_bw_mon
+			Remove interrupt printout from udpmon_send
+	                Correct printout in udpmon_bw_mon and  udpmon_recv (LINE mode)
+			Add -a to set CPU affinity to the cmd_* files
+
+     Version 1.4.2
+        rich  13 Oct 15
+	                Enable udpmon to cope with up to 64 CPUs in a node
+			Remove interrupt printout from udpmon (would now need a matrix of irq vs CPU for 100GE NICS)
+      Version 1.4.0
+        Attila Bogár, rich  6-10 Feb 14
+	       	      	 Improve Autotools and spec for rpm generation: Attila Bogár <attila.bogar@gmail.com>
+			 Use autoreconf -i in bootstrap
+			 Add files: AUTHORS ChangeLog NEWS COPYING INSTALL
+			 Add required AM_PROG_CC_C_O in configure.in
+			 In Makefile.am put udpmon programs into bin/ not sbin/ (convention)
+			 In spec.in file: put udpmon programs into bin/ not sbin/  ; Fix the build- process and location;
+			    for the rpm use: name-version-rpm_release
+			 Enable cmd_*.pl files to use system installed or home directory versions of udpmon programs
+
+
+      Version 1.3.4
+        rich  11 Dec 13  Add -M -B options to set histogram parameters in udpmon_recv
+	      	     	 Remove definitions of LONG_FORMAT from net_test.h - in arch.h
+
+      Version 1.3.3
+        rich  12 Jun 13  Add -r option to allow specification of the rate in Mbit/s to udpmon_send & udpmon_bw_mon
+	      	     	 Make printout headings more meaningful
+                         Add support for ARMv6 as in Raspberry Pi
+	      	     	 In parse_command_line() put (char) EOF
+                         Reduce the printout given without the -x option
+	      	     	 Re-order output process: get all data | calculate | print
+	      	     	 Add calculation and printout of num_lost_innet and %lost_innet - uses UDPInErrors in estimation
+       Version 1.3.2
+        rich  02 Feb 12  Add CPU affinity support (-a)
+                         update the cmd*.pl files to support this
+
+      Version 1.3.1
+        rich  06 Jun 10  Add IPv6 support
+                         fix $Year bug in cmd_*.pl files
+
+      Version 1.2.3
+        rich  12 Aug 09  Update bootstrap, confure.in
+                         Add version.h.in and #include "version.h" to programs
+                         Use CPUStat_print*() routines
+			 Add columns to -G & -L options udpmon_bw_mon
+			 Add perl files for tests: cmd*.pl
+
+      Version 1.2.2
+        rich  01 Feb 08  Re-package version 1.2.2
+        rich  29 Aug 07  Replace use of gettimeofday() with StopWatch_*() to record time of last frame seen
+			 Use int64 variables for packet times
+			 correct ordering in strict params{}
+			 udpmon protocol version 6 now required
+			 Wait times can now be of form tt.t us not just integer - helps with 10 Gigabit
+
+      Version 1.2.1
+        rich  29 Jun 07 Used patch from Jack Eidsness from AboveNet Communications in McLean Virginia [jeidsness@above.net] :
+				Add -h print help option
+				Increase the allowed length of the hostname to
+				Change sprintf() to snprintf() to avoid any potential buffer overflow security problems
+				Assign EXIT_SUCCESS and EXIT_FAILURE to exit() calls
+			Add a LICENSE file to the directory
+			Add -L <n> option to record LOST packet numbers and time of next packet
+			Change -G <n_record> to -G <skip:n_record> with skip: optional and defaulting to 0
+			Change 1-way timing to use int64. units= 1/10 us
+
+      Version 1.1.2
+        rich  16 Jun 06 Add cmd_get_sys_info.pl
+	                udpmon_bw_mon correct size of send_cmd() request for NET_SNMPStat
+
+      Version 1.1.1
+        rich  15 May 05 Add network interface and snmp stats to -x output
+			VERSION 5 protocol
+
+      Version 1.0.2
+        rich  20 Mar 05 Add HISTORY file and cmd_1waydelay cmd_jitter cmd_latency cmd_throughput cmd_get_sys_info
+        rich  15 Dec 04 VERSION 4 protocol
+			udpmon_bw_mon -x extended printout of CPUStats (if available)
+
+      Version 1.0.0
+        rich  30 May 04 -n not in cmd parser fixed
+
+udpmon_req
+      Version 1.0.2
+        rich  15 Dec 04 VERSION 4 protocol - no other changes
+
+udpmon_resp
+      Version 1.0.2
+        rich  15 Dec 04 VERSION 4 protocol - no other changes
+
