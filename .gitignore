@@ -78,7 +78,7 @@ udpmon_bw_mon
 udpmon_resp
 udpmon_send
 udpmon_recv
-udpmon_req.c
+udpmon_req
 
 #write_file
 #read_file
